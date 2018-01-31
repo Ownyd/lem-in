@@ -6,7 +6,7 @@
 #    By: tlux <tlux@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/27 06:20:44 by tlux              #+#    #+#              #
-#    Updated: 2018/01/29 10:35:06 by tlux             ###   ########.fr        #
+#    Updated: 2018/01/31 14:40:38 by tlux             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_strstr.c ft_strnstr.c ft_strrchr.c ft_count_if.c ft_foreach.c \
 	  ft_print_params.c ft_sqrt.c ft_swap.c get_next_line.c \
 	  ft_atoll.c ft_strfreejoin.c ft_strfreesub.c ft_roomadd.c ft_roomnew.c \
-	  ft_tubeadd.c ft_tubenew.c find_room.c
+	  ft_tubeadd.c ft_tubenew.c find_room.c find_room_by_name.c \
+	  ft_pathnew.c ft_pathadd.c
 
 OBJ = $(SRC:.c=.o)
 

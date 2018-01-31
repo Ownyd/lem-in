@@ -6,7 +6,7 @@
 /*   By: tlux <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 00:12:12 by tlux              #+#    #+#             */
-/*   Updated: 2018/01/29 11:32:54 by tlux             ###   ########.fr       */
+/*   Updated: 2018/01/31 14:40:24 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <locale.h>
 # include <limits.h>
 # define BUFF_SIZE 10
@@ -28,6 +29,10 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+void	ft_pathadd(t_paths **alst, t_paths *new);
+t_paths	*ft_pathnew(char *p);
+void find_paths(t_rooms *rooms, int last);
+t_rooms	*find_room_by_name(char *name, t_rooms *lst);
 t_rooms	*find_room(int number, t_rooms *lst);
 t_tubes				*ft_tubenew(int number);
 void	ft_tubeadd(t_tubes **alst, t_tubes *new);
