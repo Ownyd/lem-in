@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 06:34:06 by tlux              #+#    #+#             */
-/*   Updated: 2018/01/30 17:01:32 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/04 21:12:17 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	parser(int ants)
 		if (line[0] == '#' && ft_strcmp(line, "##end") == 0)
 			end = 1;
 	}
+	start_distance(&rooms, i);
 	find_paths(rooms, i);
 	return(0);
 }

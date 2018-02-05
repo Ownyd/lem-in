@@ -6,7 +6,7 @@
 /*   By: tlux <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 00:12:12 by tlux              #+#    #+#             */
-/*   Updated: 2018/01/31 14:40:24 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/04 18:04:33 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
+void	start_distance(t_rooms **rooms, int last);
 void	ft_pathadd(t_paths **alst, t_paths *new);
 t_paths	*ft_pathnew(char *p);
 void find_paths(t_rooms *rooms, int last);

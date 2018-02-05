@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 06:30:27 by tlux              #+#    #+#             */
-/*   Updated: 2018/01/31 14:37:51 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/04 18:03:25 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct		s_rooms
 	int				n;
 	int				x;
 	int				y;
+	int				ds;
+	int				de;
 	char			*name;
 	struct s_tubes	*tubes;
 	struct s_rooms	*next;
