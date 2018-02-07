@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 06:30:27 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/04 18:03:25 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/07 22:50:39 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@
 #define KMAG  "\x1B[35m"
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
-
+#define MAXPATH 100
+#define A_R 9999999999
 typedef struct		s_paths
 {
 	char			*p;
+	int				len;
 	struct s_paths	*next;
 }					t_paths;
 
@@ -42,6 +44,9 @@ typedef struct		s_rooms
 	int				y;
 	int				ds;
 	int				de;
+	int				start;
+	int				end;
+	int				ant;
 	char			*name;
 	struct s_tubes	*tubes;
 	struct s_rooms	*next;

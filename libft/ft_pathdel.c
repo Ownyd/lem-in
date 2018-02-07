@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_rooms.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
+/*   By: tlux <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 10:30:49 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/06 18:07:33 by tlux             ###   ########.fr       */
+/*   Created: 2017/11/13 18:50:07 by tlux              #+#    #+#             */
+/*   Updated: 2018/02/07 16:26:49 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-t_rooms	*find_room_by_name(char *name, t_rooms *lst)
+void	ft_pathdel(t_paths **alst)
 {
-	t_rooms *tmp;
+	t_paths *calst;
 
-	tmp = lst;
-	while (tmp)
+	calst = *alst;
+	while (calst)
 	{
-		if (ft_strcmp(name, tmp->name) == 0)
-			return(tmp);
-		tmp = tmp->next;
+		if (calst->p)
+			free(calst->p);
+		free(calst);
+		calst = calst->next;
 	}
-	return (NULL);
+	*alst = NULL;
 }

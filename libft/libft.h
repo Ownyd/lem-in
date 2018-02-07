@@ -6,7 +6,7 @@
 /*   By: tlux <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 00:12:12 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/04 18:04:33 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/07 22:02:04 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,21 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-void	start_distance(t_rooms **rooms, int last);
+int		tubemode(int n);
+void	add_room(t_rooms **rooms, char *line, int number, char *act);
+void	add_tube(t_rooms **rooms, char *line);
+int		stop_parse(int c);
+int		duplicate_name(char *str, t_rooms *rooms);
+int		non_tube(char *str);
+void	ft_tabfree(char **tab);
+void	ft_roomdel(t_rooms **alst);
+void	ft_pathdel(t_paths **alst);
+void	resolve(t_paths *paths, t_rooms *rooms, int ants);
+t_rooms	*find_room_extrems(char *search, t_rooms *lst);
+int		start_distance(t_rooms **rooms);
 void	ft_pathadd(t_paths **alst, t_paths *new);
 t_paths	*ft_pathnew(char *p);
-void find_paths(t_rooms *rooms, int last);
+t_paths *find_paths(t_rooms *rooms);
 t_rooms	*find_room_by_name(char *name, t_rooms *lst);
 t_rooms	*find_room(int number, t_rooms *lst);
 t_tubes				*ft_tubenew(int number);
@@ -39,6 +50,8 @@ void	ft_tubeadd(t_tubes **alst, t_tubes *new);
 t_rooms				*ft_roomnew(char *name, int coord_x, int coord_y, int number);
 void				ft_roomadd(t_rooms **alst, t_rooms *new);
 
+long long	ft_atoll(const char *str);
+int		ft_isstrdigit(char *str);
 long long			ft_atoll(const char *str);
 char				*ft_strfreesub(char *s, unsigned int start, size_t len);
 char				*ft_strfreejoin(char *s1, char *s2, int choice);
@@ -101,7 +114,7 @@ int					ft_strnequ(const char *s1, const char *s2, size_t n);
 char				*ft_strnew(size_t size);
 char				*ft_strnstr(const char *str, const char *to_find, size_t n);
 char				*ft_strrchr(const char *s, int c);
-char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit(char const *s, char *str);
 char				*ft_strstr(const char *str, const char *to_find);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);

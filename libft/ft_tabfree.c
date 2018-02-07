@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_rooms.c                                       :+:      :+:    :+:   */
+/*   ft_tabfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 10:30:49 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/06 18:07:33 by tlux             ###   ########.fr       */
+/*   Created: 2018/02/07 16:37:50 by tlux              #+#    #+#             */
+/*   Updated: 2018/02/07 16:39:14 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_rooms	*find_room_by_name(char *name, t_rooms *lst)
+void	ft_tabfree(char **tab)
 {
-	t_rooms *tmp;
+	int i;
 
-	tmp = lst;
-	while (tmp)
+	i = 0;
+	while (tab[i])
 	{
-		if (ft_strcmp(name, tmp->name) == 0)
-			return(tmp);
-		tmp = tmp->next;
+		free(tab[i]);
+			i++;
 	}
-	return (NULL);
+	free(tab);
 }

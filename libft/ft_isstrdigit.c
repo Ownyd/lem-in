@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_rooms.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
+/*   By: tlux <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 10:30:49 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/06 18:07:33 by tlux             ###   ########.fr       */
+/*   Created: 2017/11/11 13:44:47 by tlux              #+#    #+#             */
+/*   Updated: 2018/02/06 18:33:41 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_rooms	*find_room_by_name(char *name, t_rooms *lst)
+int		ft_isstrdigit(char *str)
 {
-	t_rooms *tmp;
+	int i;
 
-	tmp = lst;
-	while (tmp)
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] != '\0')
 	{
-		if (ft_strcmp(name, tmp->name) == 0)
-			return(tmp);
-		tmp = tmp->next;
+	if (str[i] <= 47 || str[i] >= 58)
+		return (0);
+	i++;
 	}
-	return (NULL);
+	return (1);
 }
