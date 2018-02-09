@@ -6,7 +6,7 @@
 /*   By: tlux <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 22:21:25 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/07 02:06:47 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/09 19:18:12 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_nbrword(char const *s, char *str)
 	ret = 0;
 	while (s[i] != 0)
 	{
-		if (ft_strchr(str,s[i]) == 0)
+		if (ft_strchr(str, s[i]) == 0)
 		{
 			ret++;
 			while (ft_strchr(str, s[i]) == 0 && s[i] != 0)
@@ -40,7 +40,7 @@ static int	ft_wordlen(char const *s, char *str)
 	int	i;
 
 	i = 0;
-	while (ft_strchr(str,s[i]) == 0 && s[i] != 0)
+	while (ft_strchr(str, s[i]) == 0 && s[i] != 0)
 		i++;
 	return (i);
 }
@@ -70,18 +70,15 @@ char		**ft_strsplit(char const *s, char *str)
 	int		j;
 
 	if ((i = 0) == 0 && s == NULL)
-	{
-		ret = NULL;
-		return (ret);
-	}
+		return (NULL);
 	if (!(ret = (char**)malloc(sizeof(char*) * (ft_nbrword(s, str) + 1))))
 		return (NULL);
 	j = 0;
 	while (s[i] != 0)
 	{
 		if (j == ft_nbrword(s, str))
-			break;
-		while (ft_strchr(str,s[i]))
+			break ;
+		while (ft_strchr(str, s[i]))
 			i++;
 		if (s[i] != 0)
 		{

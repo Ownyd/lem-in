@@ -6,7 +6,7 @@
 #    By: tlux <tlux@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/27 06:20:44 by tlux              #+#    #+#              #
-#    Updated: 2018/02/07 16:38:58 by tlux             ###   ########.fr        #
+#    Updated: 2018/02/09 18:59:08 by tlux             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_atoll.c ft_strfreejoin.c ft_strfreesub.c ft_roomadd.c ft_roomnew.c \
 	  ft_tubeadd.c ft_tubenew.c find_room.c find_room_by_name.c \
 	  ft_pathnew.c ft_pathadd.c find_room_extrems.c ft_isstrdigit.c ft_atoll.c \
-	  ft_pathdel.c ft_roomdel.c ft_tabfree.c
+	  ft_pathdel.c ft_roomdel.c ft_tabfree.c ft_tubedel.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -41,16 +41,16 @@ FLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 %.o : %.c
-	@$(CC) $(FLAGS) -o $@ -c $< -I $(HEADER)
+	$(CC) $(FLAGS) -o $@ -c $< -I $(HEADER)
 
 $(NAME) : $(OBJ)
-	@ar rc $(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
 clean :
-	@rm -rf $(OBJ)
+	rm -rf $(OBJ)
 
 fclean :	clean
-	@rm -rf $(NAME)
+	rm -rf $(NAME)
 
 re : fclean all

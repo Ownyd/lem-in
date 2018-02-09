@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 06:34:06 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/08 00:04:41 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/09 19:27:05 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void	send_parsing(char *line, int *end, int *start, t_rooms **rooms)
 			add_room(rooms, line, i, "");
 	}
 	if (line[0] != '#' && ft_strchr(line, ' ') != 0 && tubemode(0) == 1)
-		stop_parse(1);
+		stop_parse(1, 0);
 	if (line[0] != '#' && ft_strchr(line, ' ') == 0)
 		add_tube(rooms, line);
 	if (line[0] == '#' && ft_strcmp(line, "##end") == 0)
 		*end = 1;
-	if (line[0] == '#' && ft_strcmp(line, "##start") == 0)
+	else if (line[0] == '#' && ft_strcmp(line, "##start") == 0)
 		*start = 1;
 	free(line);
 }
@@ -79,7 +79,7 @@ int		parser(int ants)
 	rooms = NULL;
 	start = 0;
 	end = 0;
-	while (stop_parse(0) == 0 && get_next_line(0, &line) == 1)
+	while (stop_parse(0, -1) == 0 && get_next_line(0, &line) == 1)
 		send_parsing(line, &end, &start, &rooms);
 	while (get_next_line(0, &line) == 1 && buff_output(line, "add"))
 		free(line);
@@ -91,7 +91,7 @@ int		parser(int ants)
 		ft_pathdel(&paths);
 	}
 	else
-		printf("ERROR\n");
+		ft_putendl_fd("Cannot resolve this map\nERROR", 2);
 	ft_roomdel(&rooms);
 	return (0);
 }
@@ -114,12 +114,12 @@ int		main(void)
 	if (ret == 1 && ft_isstrdigit(line))
 		ants = ft_atoll(line);
 	else
-		return (write(2, "ERROR\n", 6));
+		return (write(2, "No ants or non-digit ant count\nERROR\n", 37));
 	tmp = ft_strtrim(line);
 	free(line);
 	line = tmp;
-	if (!ft_isstrdigit(line) || ants == 9999999999)
-		return (write(2, "ERROR\n", 6));
+	if (!ft_isstrdigit(line) || ants == 9999999999 || ants < 0)
+		return (write(2, "Overflow/Underflow ant number\nERROR\n", 36));
 	parser((int)ants);
 	free(tmp);
 	return (0);

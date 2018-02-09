@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 10:30:49 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/06 19:14:01 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/09 19:16:22 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 t_rooms	*find_room_extrems(char *search, t_rooms *lst)
 {
 	t_rooms *tmp;
-	tmp = lst;
 
+	tmp = lst;
 	while (tmp)
 	{
 		if (ft_strcmp(search, "start") == 0)
 			if (tmp->start == 1)
-				return(tmp);
+				return (tmp);
 		if (ft_strcmp(search, "end") == 0)
 			if (tmp->end == 1)
-				return(tmp);
+				return (tmp);
 		tmp = tmp->next;
 	}
 	return (NULL);

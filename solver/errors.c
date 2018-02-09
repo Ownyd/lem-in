@@ -6,25 +6,44 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 21:56:48 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/07 21:57:59 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/09 19:14:47 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 
-int		stop_parse(int c)
+static void	err_msg(int err)
+{
+	if (err == 0)
+		ft_putendl_fd("Room declared after tube", 2);
+	else if (err == 1)
+		ft_putendl_fd("Invalid room/coordonates arguments", 2);
+	else if (err == 2)
+		ft_putendl_fd("Invalid room/coordonates format or duplicate room", 2);
+	else if (err == 3)
+		ft_putendl_fd("Invalid tube format", 2);
+	else if (err == 4)
+		ft_putendl_fd("Invalid tube arguments", 2);
+	else if (err == 5)
+		ft_putendl_fd("Invalid rooms names in the tube", 2);
+}
+
+int			stop_parse(int c, int err)
 {
 	static int stop = 0;
 
 	if (c == 1)
 		stop = 1;
 	if (stop == 1)
+	{
+		err_msg(err);
 		return (1);
+	}
 	else
 		return (0);
 }
 
-int		duplicate_name(char *str, t_rooms *rooms)
+int			duplicate_name(char *str, t_rooms *rooms)
 {
 	t_rooms *tmp;
 
@@ -39,7 +58,7 @@ int		duplicate_name(char *str, t_rooms *rooms)
 	return (0);
 }
 
-int		non_tube(char *str)
+int			non_tube(char *str)
 {
 	int i;
 

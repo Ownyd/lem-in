@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 17:02:22 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/08 00:06:13 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/08 21:09:34 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int		store_used(int n, char *act)
 {
-	static t_tubes	*used;
+	static t_tubes	*used = NULL;
 	t_tubes			*tmp;
 
 	tmp = used;
 	if (ft_strcmp(act, "add") == 0)
 		ft_tubeadd(&used, ft_tubenew(n));
-	if (ft_strcmp(act, "read") == 0)
+	else if (ft_strcmp(act, "read") == 0)
 	{
 		while (tmp)
 		{
@@ -29,14 +29,9 @@ static int		store_used(int n, char *act)
 			tmp = tmp->next;
 		}
 	}
-	if (ft_strcmp(act, "free") == 0)
+	else
 	{
-		while (tmp)
-		{
-			free(tmp);
-			tmp = tmp->next;
-		}
-		act = NULL;
+		ft_tubedel(&used);
 	}
 	return (0);
 }
@@ -93,21 +88,23 @@ t_paths			*find_paths(t_rooms *rooms)
 {
 	t_rooms	*tmp;
 	t_paths	*paths;
+	t_tubes *tmpt;
 
 	paths = NULL;
 	tmp = find_room_extrems("start", rooms);
 	store_used(tmp->n, "add");
-	while (tmp->tubes)
+	tmpt = tmp->tubes;
+	while (tmpt)
 	{
-		if (store_used(tmp->tubes->n, "read") == 0)
+		if (store_used(tmpt->n, "read") == 0)
 		{
-			store_used(tmp->tubes->n, "add");
-			ft_pathadd(&paths, ft_pathnew(ft_itoa(tmp->tubes->n)));
+			store_used(tmpt->n, "add");
+			ft_pathadd(&paths, ft_pathnew(ft_itoa(tmpt->n)));
 			paths->len = 2;
-			if (tmp->tubes->n != find_room_extrems("end", rooms)->n)
-				travel_path(find_room(tmp->tubes->n, rooms), rooms, paths);
+			if (tmpt->n != find_room_extrems("end", rooms)->n)
+				travel_path(find_room(tmpt->n, rooms), rooms, paths);
 		}
-		tmp->tubes = tmp->tubes->next;
+		tmpt = tmpt->next;
 	}
 	store_used(0, "free");
 	return (paths);

@@ -6,7 +6,7 @@
 #    By: tlux <tlux@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 00:39:20 by tlux              #+#    #+#              #
-#    Updated: 2018/02/07 19:43:36 by tlux             ###   ########.fr        #
+#    Updated: 2018/02/08 22:04:04 by tlux             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ echo "------\nempty_file test\n------\n"
 read
 clear
 read
-echo "------\noverflow_ant test\n------\n"
+echo "------\nbullshit test\n------\n"
 ./../../lem-in < bullshit
 read
 clear

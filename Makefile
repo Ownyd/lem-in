@@ -6,15 +6,15 @@
 #    By: tlux <tlux@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/27 06:20:44 by tlux              #+#    #+#              #
-#    Updated: 2018/02/07 22:00:45 by tlux             ###   ########.fr        #
+#    Updated: 2018/02/09 18:55:31 by tlux             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY : clean fclean re all
 
-NAME = libft/libft.a
+NAME = lem-in
 HEADER = lem_in.h
-EXEC = lem-in
+LIB = libft/libft.a
 SRC = parser.c start_distance.c find_paths.c resolve.c errors.c add_func.c
 
 OBJ = $(addprefix solver/, $(SRC:.c=.o))
@@ -29,8 +29,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
 	make -C libft
-	$(CC) $(FLAGS) $(NAME) $(OBJ) -o $(EXEC)
-	$(CC) $(FLAGS) $(NAME) visu/main_ncurses.c -lncurses -o see
+	$(CC) $(FLAGS) $(LIB) $(OBJ) -o $(NAME)
 
 clean :
 	make -C libft clean
@@ -38,7 +37,6 @@ clean :
 
 fclean :	clean
 	make -C libft fclean
-	@rm -rf $(NAME)
-	rm -rf $(EXEC)
+	rm -rf $(NAME)
 
 re : fclean all

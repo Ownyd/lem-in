@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 10:30:49 by tlux              #+#    #+#             */
-/*   Updated: 2018/01/29 11:32:47 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/09 19:16:04 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 t_rooms	*find_room(int number, t_rooms *lst)
 {
 	t_rooms *tmp;
-	tmp = lst;
 
+	tmp = lst;
 	while (tmp)
 	{
 		if (tmp->n == number)
-			return(tmp);
+			return (tmp);
 		tmp = tmp->next;
 	}
 	return (0);

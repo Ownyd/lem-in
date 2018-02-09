@@ -6,7 +6,7 @@
 /*   By: tlux <tlux@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 21:59:46 by tlux              #+#    #+#             */
-/*   Updated: 2018/02/07 22:19:08 by tlux             ###   ########.fr       */
+/*   Updated: 2018/02/08 21:54:35 by tlux             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_room(t_rooms **rooms, char *line, int number, char *act)
 	long coord_y;
 
 	split = ft_strsplit(line, "\t ");
-	if ((!split[0] || !split[1] || !split[2]) && stop_parse(1) >= 0)
+	if ((!split[0] || !split[1] || !split[2]) && stop_parse(1, 1) >= 0)
 		return ;
 	coord_x = ft_atoll(split[1]);
 	coord_y = ft_atoll(split[2]);
@@ -28,7 +28,7 @@ void	add_room(t_rooms **rooms, char *line, int number, char *act)
 		|| duplicate_name(split[0], *rooms) == 1
 		|| coord_x == A_R || coord_y == A_R)
 	{
-		stop_parse(1);
+		stop_parse(1, 2);
 		return ;
 	}
 	ft_roomadd(rooms, ft_roomnew(split[0], coord_x, coord_y, number));
@@ -46,17 +46,17 @@ void	add_tube(t_rooms **rooms, char *line)
 	t_rooms	*tmp2;
 
 	tubemode(1);
-	if (non_tube(line) && stop_parse(1) >= 0)
+	if (non_tube(line) && stop_parse(1, 3) >= 0)
 		return ;
 	split = ft_strsplit(line, "- ");
-	if ((!split[0] || !split[1]) && stop_parse(1) >= 0)
+	if ((!split[0] || !split[1]) && stop_parse(1, 4) >= 0)
 		return ;
 	tmp1 = find_room_by_name(split[0], *rooms);
 	tmp2 = find_room_by_name(split[1], *rooms);
 	if (tmp1 == NULL || tmp2 == NULL || split[2] != NULL
 			|| ft_strcmp(split[0], split[1]) == 0)
 	{
-		stop_parse(1);
+		stop_parse(1, 5);
 		return ;
 	}
 	ft_tubeadd(&(tmp1->tubes), ft_tubenew(tmp2->n));
